@@ -1,6 +1,10 @@
 # Class Components Intro
 
-## Overview
+## Learning Goals
+
+- Translate function component syntax to class component syntax
+
+## Introduction
 
 So far throughout this phase, we've been writing all our components as
 **function components**. Function components take in props, and return JSX.
@@ -16,10 +20,6 @@ You are still very likely to encounter the class components when reading about
 React, and even are likely to see them on your first React job. So let's take a
 look at the syntax and learn some of the ins and outs of writing class
 components.
-
-## Objectives
-
-1. Translate a function component to a class component
 
 ## Class Component Syntax
 
@@ -40,6 +40,8 @@ function BlogPost(props) {
 Here's what the same component looks like using the class syntax:
 
 ```js
+import React from "react";
+
 class BlogPost extends React.Component {
   render() {
     return (
@@ -52,18 +54,31 @@ class BlogPost extends React.Component {
 }
 ```
 
-Here are some of the new features introduced by this class syntax:
+Note that regardless of which syntax we use to define the component, we can use
+both versions of the component the same way:
+
+```js
+ReactDOM.render(
+  // doesn't matter if BlogPost is a class component or a function component!
+  <BlogPost title="Hello" content="World" />,
+  document.getElementById("root")
+);
+```
+
+Here are some notes about this class syntax:
 
 - `class BlogPost`: the [**class declaration**][classes] gives us a template for
-  creating objects. In this case, the kind of object we're creating is a React
-  component.
+  creating JavaScript objects. In this case, the kind of object we're creating
+  is a React component.
 
-- `extends React.Component`: our components **must** inherit from the
-  `React.Component` class; this is where we'll get some additional behavior that
-  we'll see later.
+- `extends React.Component`: the `extends` keyword is JavaScript's way of
+  providing inheritance to our class definitions. Our components **must**
+  inherit from the `React.Component` class; this is where we'll get some
+  additional behavior that we'll see later.
 
 - `render()`: the `render` method is a special **lifecycle method** that must be
-  defined on all of our class components. Just like with our function components, `render` is responsible for returning JSX!
+  defined on all of our class components. Just like with our function
+  components, `render` is responsible for returning JSX!
 
 - `this.props`: When React runs, any time we use `<BlogPost>` in a parent
   component, React will make a new **object** by calling constructor function
@@ -74,20 +89,23 @@ Here are some of the new features introduced by this class syntax:
 
 ```js
 // when we write this:
-<BlogPost title="Hello" content="World" />;
+ReactDOM.render(
+  <BlogPost title="Hello" content="World" />,
+  document.getElementById("root")
+);
 
 // something like this happens in React's internal code
 const component = new BlogPost({ title: "Hello", content: "World" });
 
 // so inside the component, the props object is saved to the object:
-class React.Component {
+class Component {
   constructor(props) {
-    this.props = props
+    this.props = props;
   }
 }
 ```
 
-## Summary
+## Conclusion
 
 You don't have to worry about what's happening under the hood in React, but for working with class components, here are the key takeaways so far:
 
