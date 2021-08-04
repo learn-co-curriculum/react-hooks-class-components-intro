@@ -26,7 +26,7 @@ components.
 When we're writing a function component, the most basic version (without any
 hooks) looks something like this:
 
-```js
+```jsx
 function BlogPost(props) {
   return (
     <article>
@@ -39,7 +39,7 @@ function BlogPost(props) {
 
 Here's what the same component looks like using the class syntax:
 
-```js
+```jsx
 import React from "react";
 
 class BlogPost extends React.Component {
@@ -57,7 +57,7 @@ class BlogPost extends React.Component {
 Note that regardless of which syntax we use to define the component, we can use
 both versions of the component the same way:
 
-```js
+```jsx
 ReactDOM.render(
   // doesn't matter if BlogPost is a class component or a function component!
   <BlogPost title="Hello" content="World" />,
@@ -87,7 +87,7 @@ Here are some notes about this class syntax:
   `this.props` inside of any method defined in our component. `props` alone
   won't work! We must use `this.props`.
 
-```js
+```jsx
 // when we write this:
 ReactDOM.render(
   <BlogPost title="Hello" content="World" />,
